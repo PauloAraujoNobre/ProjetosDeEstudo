@@ -1,0 +1,12 @@
+#include <stdio.h>
+int main(){	
+	int i, n, count = 0;
+	printf("Digite um inteiro: ");
+	scanf("%d", &n);
+	for(i = 0;i < sizeof(n)*8;i++){
+		count = ((n & 1)% 2 == 1 ? count+1 : count);
+		n = n >> 1;
+	}
+	printf("O total de bits 1's vale: %d\n", count);
+	return 0;
+}

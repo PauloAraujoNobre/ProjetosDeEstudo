@@ -1,0 +1,21 @@
+#include <stdio.h>
+int main(){
+    int i = 1, x, count = 0;
+    int fib[99];
+    printf("Digite um número: ");
+    scanf("%d", &x);
+    fib[0] = 0;
+    do{
+        if(i == 1){
+            fib[i] = 1;
+        }else{
+            fib[i] = fib[i-1] + fib[i-2];
+        }
+        i++;
+        count++;
+    }while(x>fib[i-1]);
+    for(i=0;i<count+1;i++){
+        printf("%d\n", fib[i]);
+    }
+    return 0;
+}

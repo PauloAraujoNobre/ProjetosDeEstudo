@@ -1,0 +1,19 @@
+#include <stdio.h>
+
+void maior(int*a, int*b, int*c){
+    if(*a>*b){
+        *c = *a;
+    }else{
+        *c = *b;
+    }
+    return 0;
+}
+
+int main(){
+    int a, b, c;
+    printf("Digite 2 numeros assim como descrito(x y): ");
+    scanf("%d %d", &a, &b);
+    maior(&a, &b, &c);
+    printf("MAIOR: %d\n", c);
+    return 0;
+}

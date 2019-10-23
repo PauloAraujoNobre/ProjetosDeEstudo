@@ -1,0 +1,26 @@
+#include <stdio.h>
+int main(){
+	int x, y, maior = 0;
+	for(x = 100; x < 999; x++){
+		for (y = 100; y < 999; y++ ){
+			int mut, auxiliar,pal = 0;
+			mut = x*y;
+			auxiliar = mut;
+			
+			while(mut > 0){
+				pal = pal*10 + mut%10;
+				 mut = mut /10;
+			}
+
+			if (auxiliar == pal){
+				if(pal > maior){
+					maior = pal;
+				}
+			}
+
+		}
+
+	}		
+	printf("O maior palindromo é %d\n", maior);
+	return 0;
+}

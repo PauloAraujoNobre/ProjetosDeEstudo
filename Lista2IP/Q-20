@@ -1,0 +1,12 @@
+#include <stdio.h>
+int main(){	
+    double aumento, perc = 0.015, salario = 2000;
+    int ano;
+    aumento = salario*perc;
+    for(ano = 1996;ano < 2018;ano++, aumento = aumento*2){
+        salario = salario+aumento;
+
+    }
+    printf("O salario em 2018 será de: %lf", salario);
+	return 0;
+}

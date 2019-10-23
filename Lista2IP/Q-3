@@ -1,0 +1,14 @@
+#include <stdio.h>
+int main(){
+    unsigned i1, i2, aux;
+    printf("Digite 2 variáveis: ");
+    scanf("%d %d", &i1, &i2);
+    aux = i1;
+    i1 = i1 & 0;
+    i1 = i1 | i2;
+    
+    i2 = i2 & 0;
+    i2 = i2 | aux;
+    printf("%d, %d\n", i1, i2);
+    return 0;
+}

@@ -1,0 +1,15 @@
+#include <stdio.h>
+int main(){
+    char i;
+    int resul = 0;
+    unsigned int count;
+    printf("Digite um char: ");
+    scanf("%d", &i);
+    for(count=128;count>0;count>>=1){
+        if(count & i){
+            resul++;
+        }
+    }
+    printf("Existem %d números 1's", resul);
+    return 0;
+}

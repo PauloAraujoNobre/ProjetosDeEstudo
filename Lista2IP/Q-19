@@ -1,0 +1,8 @@
+#include <stdio.h>
+int main(){	
+    int i, count;
+    float a = 1.5, b = 1.1;
+    for(i=0;b<a;a = a+0.02, b = b+0.03, count++);
+    printf("Demorará %d anos para Zé passar de Chico", count);
+	return 0;
+}

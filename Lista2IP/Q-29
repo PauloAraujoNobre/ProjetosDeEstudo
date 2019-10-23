@@ -1,0 +1,23 @@
+#include <stdio.h>
+
+void hora(int*a, int*b, int*c){
+    *a = *a*3600;
+    *b = *b*60;
+    return 0;
+}
+
+int main(){
+    int a, b ,c;
+    int x, y, z;
+    printf("Digite a hora da maneira descrita(hh:mm:ss): ");
+    scanf("%d:%d:%d", &a, &b, &c);
+    x = a;
+    y = b;
+    z = c;
+    hora(&a, &b, &c);
+    printf("%d horas equivale %d segundos\n", x, a);
+    printf("%d minutos equivale %d segundos\n", y, b);
+    printf("%d segundos equivale %d segundos\n", z, c);
+    printf("A soma deles vale %d segundos", (a+b+c));
+    return 0;
+}

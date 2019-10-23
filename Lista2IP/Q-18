@@ -1,0 +1,22 @@
+#include <stdio.h>
+int main(){
+    int op;
+    float kmh, ms;
+    printf("Digite uma opção:\n[1]Transforma km/h em m/s\n[2]Transforma m/s em km/h\n");
+    scanf("%d", &op);
+    switch(op){
+        case 1:
+            printf("Digite a velocidade em km/h: ");
+            scanf("%f", &kmh);
+            ms = kmh/3.6;
+            printf("%.1f km/h equivale a %.f m/s", kmh, ms);
+            break;
+        case 2:
+            printf("Digite a velocidade em m/s: ");
+            scanf("%f", &ms);
+            kmh = ms*3.6;
+            printf("%.1f m/s equivale a %.1f km/h", ms, kmh);
+            break;
+    }
+    return 0;
+}

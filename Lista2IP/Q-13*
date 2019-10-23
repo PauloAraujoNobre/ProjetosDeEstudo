@@ -1,0 +1,16 @@
+#include <stdio.h>
+int main(){
+    int i,maior = 0, N = 0;
+    int x[1001];
+    printf("Quantos números deseja digitar? ");
+    scanf("%i", &N);
+    for(i=0;i<N;i++){
+        printf("Digite o %dº número:\n", i+1);
+        scanf("%d", &x[i]);
+        if(x[i]>maior){
+            maior = x[i];
+        }
+    }
+    printf("Maior: %d", maior);
+    return 0;
+}

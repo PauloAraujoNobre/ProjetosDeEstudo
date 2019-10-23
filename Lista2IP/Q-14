@@ -1,0 +1,17 @@
+#include <stdio.h>
+int main(){
+    int a = 0, b = 0, c = 0;
+    printf("Digite um número inteiro entre 100 e 999: ");
+    scanf("%d", &a);
+    b = a;
+    printf("%d - ", a);
+    a = a/100;
+    printf("%d centenas, ", a);
+    b = b-(100*a);
+    c = b;
+    b = b/10;
+    printf("%d dezenas, ", b);
+    c = c-(10*b);
+    printf("%d unidades.", c);
+    return 0;
+}

@@ -1,0 +1,17 @@
+#include <stdio.h>
+int main(){	
+    int i, n, count = 0;
+    printf("Digite um número maior do que 1: ");
+    scanf("%i", &n);
+    for(i=n;i>=1;i--){
+        if(n%i == 0){
+            count++;
+        }
+    }
+    if(count < 3){
+        printf("O número %d é primo", n);
+    }else{
+        printf("O número %d não é primo", n);
+    }
+	return 0;
+}

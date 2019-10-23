@@ -1,0 +1,21 @@
+#include <stdio.h>
+
+void numb(int*a){
+    if(*a>0){
+        *a = 1;
+    }else if(*a<0){
+        *a = -1;
+    }else{
+        *a = 0;
+    }
+    return 0;
+}
+
+int main(){
+    int a;
+    printf("Digite um número: ");
+    scanf("%d", &a);
+    numb(&a);
+    printf("%d\n", a);
+    return 0;
+}

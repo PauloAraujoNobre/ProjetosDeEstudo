@@ -28,11 +28,13 @@ Para efetuar testes, recomendo a utilização de uma feramenta de testes como [P
 ## Diagram Project
 
 Digrama de requisições:
+
 ![alt text][Diagram]
 
 [Diagram]: https://github.com/PauloAraujoNobre/ProjetosDeEstudo/blob/master/GoLang/checklist/Diagram/Imgs/Requests.png "Diagrama de requisições"
 
 Detalhamento do digrama de requisições:
+
 ![alt text][DiagramDetails]
 
-[DiagramDetails]: ./Diagram/imgs/RequestDetails.png "Diagrama de requisições"
+[DiagramDetails]: https://github.com/PauloAraujoNobre/ProjetosDeEstudo/blob/master/GoLang/checklist/Diagram/Imgs/RequestDetails.png "Detalhes do diagrama de requisições"

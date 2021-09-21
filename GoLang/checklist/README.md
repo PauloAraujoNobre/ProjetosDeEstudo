@@ -4,6 +4,9 @@ Uma aplicação desenvolvida em prol do aprendizado de diversas tecnologias, den
 
 O Checklist é uma aplicação desenvolvida para armazenar uma lista de tarefas, onde você pode gerenciar tarefas
 
+## Prerequisites 
+Golang 1.17
+
 ## Get Start
 Com esse comando você poderá instalar as dependencias do projeto
 
@@ -18,4 +21,18 @@ Após instalar as dependências e as migrations, o projeto já está apto, para 
 `go run .\cmd\api\main.go`
 
 ## Auxiliary Programs 
+Para recomendação de IDE, sugiro a utilização do [VSCode](https://code.visualstudio.com)
+
 Para efetuar testes, recomendo a utilização de uma feramenta de testes como [Postman](https://www.postman.com/downloads/) ou [Insomnia](https://insomnia.rest/download)
+
+## Diagram Project
+
+Digrama de requisições:
+![alt text][Diagram]
+
+[Diagram]: ./Diagram/imgs/Requests.png "Diagrama de requisições"
+
+Detalhamento do digrama de requisições:
+![alt text][DiagramDetails]
+
+[DiagramDetails]: ./Diagram/imgs/RequestDetails.png "Diagrama de requisições"

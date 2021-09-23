@@ -5,8 +5,8 @@ Uma aplicação desenvolvida em prol do aprendizado de diversas tecnologias, den
 O Checklist é uma aplicação desenvolvida para armazenar uma lista de tarefas, onde você pode gerenciar tarefas
 
 ## Pré-requisito
-Golang 1.17
-Docker
+- Golang 1.17
+- Docker
 
 ## Começo
 Com esse comando você poderá instalar as dependencias do projeto

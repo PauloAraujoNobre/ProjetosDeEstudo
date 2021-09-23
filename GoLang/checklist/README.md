@@ -4,15 +4,16 @@ Uma aplicação desenvolvida em prol do aprendizado de diversas tecnologias, den
 
 O Checklist é uma aplicação desenvolvida para armazenar uma lista de tarefas, onde você pode gerenciar tarefas
 
-## Prerequisites 
+## Pré-requisito
 Golang 1.17
+Docker
 
-## Get Start
+## Começo
 Com esse comando você poderá instalar as dependencias do projeto
 
-`docker compose up --build`
+`go mod download`
 
-Logo em seguida, você precisará executar o comando para inicializar as migrations do bando de dados
+O seguinte comando serve para inicializar as migrations do bando de dados
 
 `migrate -path db/migrations -database "postgresql://postgres:123@localhost:5432/postgres?sslmode=disable" -verbose up`
 
@@ -20,12 +21,19 @@ Após instalar as dependências e as migrations, o projeto já está apto, para 
 
 `go run .\cmd\api\main.go`
 
-## Auxiliary Programs 
+## Programas Auxiliares
 Para recomendação de IDE, sugiro a utilização do [VSCode](https://code.visualstudio.com)
 
-Para efetuar testes, recomendo a utilização de uma feramenta de testes como [Postman](https://www.postman.com/downloads/) ou [Insomnia](https://insomnia.rest/download)
+Para efetuar testes, recomendo a utilização de uma REST Client como [Postman](https://www.postman.com/downloads/) ou [Insomnia](https://insomnia.rest/download)
 
-## Diagram Project
+## Tecnologias
+- [Go](https://golang.org)
+- [go-chi](https://github.com/go-chi/chi)
+- [golang-migrate](https://github.com/golang-migrate/migrate)
+- [godotenv](https://pkg.go.dev/github.com/joho/godotenv)
+- [pgx](https://github.com/jackc/pgx)
+
+## Diagrama do Projeto
 
 Digrama de requisições:
 

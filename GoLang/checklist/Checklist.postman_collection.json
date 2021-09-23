@@ -1,0 +1,159 @@
+{
+	"info": {
+		"_postman_id": "2f66bdf0-c7f4-4180-936f-8438c0b6480d",
+		"name": "Checklist",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get All",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/checklist",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"checklist"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get By Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/checklist/:checkId",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"checklist",
+						":checkId"
+					],
+					"variable": [
+						{
+							"key": "checkId",
+							"value": "12"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Limpar Ventilador2\",\r\n    \"description\": \"Lavar o ventilador antes das 18h2\",\r\n    \"selected\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/checklist",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"checklist"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"aaaaa\",\r\n    \"description\": \"bbbbbb\",\r\n    \"selected\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/checklist/:cehckId",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"checklist",
+						":cehckId"
+					],
+					"variable": [
+						{
+							"key": "cehckId",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/checklist/:checkId",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"checklist",
+						":checkId"
+					],
+					"variable": [
+						{
+							"key": "checkId",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URL",
+			"value": "localhost:3000"
+		}
+	]
+}

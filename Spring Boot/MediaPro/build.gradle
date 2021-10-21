@@ -4,7 +4,7 @@ plugins {
 	id 'java'
 }
 
-group = 'com.philips'
+group = 'com.media'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
@@ -25,9 +25,13 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-		
-	implementation 'org.liquibase:liquibase-core:3.10.3'
-	implementation 'org.liquibase.ext:liquibase-hibernate5:3.8'
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	implementation 'org.json:json:20171018'
+	implementation 'com.google.code.gson:gson:2.8.6'
+	
+	implementation(platform("com.squareup.okhttp3:okhttp-bom:4.9.0"))
+    implementation("com.squareup.okhttp3:okhttp")
+    implementation("com.squareup.okhttp3:logging-interceptor")
 	
 	compileOnly 'org.projectlombok:lombok'
 	
@@ -35,38 +39,11 @@ dependencies {
 	
 	annotationProcessor 'org.projectlombok:lombok'
 	
-	runtimeOnly 'org.postgresql:postgresql'
-	
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.springframework.security:spring-security-test'
-	testImplementation 'org.apache.httpcomponents:httpclient'
+	runtimeOnly('com.h2database:h2')
 }
 
 test {
 	useJUnitPlatform()
-}
-
-// Task to HELP generating liquibase changelogs.
-Properties props = new Properties()
-
-file('src/main/resources/application.properties').withInputStream {
-   props.load(it)
-}
-
-task diffChangelog(type: JavaExec) {
-    group = "db"
-
-    classpath sourceSets.main.runtimeClasspath
-  
-    main = "liquibase.integration.commandline.Main"
-
-    args "--changeLogFile=src/main/resources/db/" + buildTimestamp() + "_changelog.xml"
-    args "--referenceUrl=hibernate:spring:com.philips.meta.model?dialect=org.hibernate.dialect.PostgreSQL9Dialect&hibernate.physical_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy&hibernate.implicit_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy"
-    args "--username=" + props.getProperty('spring.datasource.username')
-    args "--password=" + props.getProperty('spring.datasource.password')
-    args "--url=" + props.getProperty('spring.datasource.url')
-    args "--driver=org.postgresql.Driver"
-    args "diffChangeLog"
 }
 
 def buildTimestamp()

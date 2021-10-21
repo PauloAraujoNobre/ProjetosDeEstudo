@@ -1,56 +1,125 @@
-package com.philips.meta.service;
+package com.media.pro.service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.philips.meta.model.User;
-import com.philips.meta.repository.UserRepository;
+import com.google.gson.Gson;
+import com.media.pro.model.Competition;
+import com.media.pro.model.CompetitionList;
+import com.media.pro.model.Highlight;
+import com.media.pro.model.HighlightExtend;
+import com.media.pro.model.Videos;
 
+import lombok.extern.slf4j.Slf4j;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
+@Slf4j
 @Service
-public class UserService {
-	@Autowired private UserRepository userRepository;
+public class FootService {
 	
-	public boolean uniqueCpfAndEmail(User user) {
-		List<User> listUser = new ArrayList<User>();
+	public CompetitionList requestFootApi() throws IOException {
+		OkHttpClient client = new OkHttpClient();
+		
+		String url = "https://www.scorebat.com/video-api/v3/";
+		
+		Request request = new Request.Builder()
+		    .url(url)
+		    .get()
+		    .build();
+		try (Response response = client.newCall(request).execute()) {
+			CompetitionList competitionList = new Gson().fromJson(response.body().string(),
+					CompetitionList.class);
+			
+			return competitionList;
+		} catch(IOException e) {
+			log.info("Error request data from foot api");
+			throw new IOException();
+		}
+	}
+	
+	public ArrayList<String> getCompetitionStringFromData() throws IOException {
+		CompetitionList competitionList = new CompetitionList();
 		
 		try {
-			listUser = userRepository.findAll();			
-		} catch(Exception e) {}
+			competitionList = requestFootApi();
+		} catch (IOException e) {
+			log.info("Error request data from competitionBean");
+			throw new IOException();
+		}
 		
-		for (User userIndex : listUser) {
-			if (userIndex.getCpf().equalsIgnoreCase(user.getCpf())
-					|| userIndex.getEmail().equalsIgnoreCase(user.getEmail())) {
-				return false;
+		ArrayList<String> beanList = new ArrayList<String>();
+		
+		for (Competition competition : competitionList.getResponse()) {	
+			beanList.add(competition.getCompetition());
+		}
+		
+		return beanList;
+	}
+	
+	public Highlight getHighlightFromData(String competitionName) throws IOException {
+		CompetitionList competitionList = new CompetitionList();
+		
+		try {
+			competitionList = requestFootApi();
+		} catch (IOException e) {
+			log.info("Error request data from competitionBean");
+			throw new IOException();
+		}
+		
+		for (Competition competition : competitionList.getResponse()) {
+			if (competition.getCompetition().equalsIgnoreCase(competitionName)) {
+				Highlight highlight = Highlight.builder()
+						.competition(competition.getCompetition())
+						.highlight_title(competition.getTitle())
+						.build();
+				
+				return highlight;
 			}
 		}
 		
-		return true;
+		return null;
 	}
 	
-	public boolean checkEmailInUse(String email) {
-		List<User> listUser = new ArrayList<User>();
+	public HighlightExtend getHighlightExtendFromData(String competitionName, int highlightIndex)
+			throws IOException {
+		CompetitionList competitionList = new CompetitionList();
 		
 		try {
-			listUser = userRepository.findAll();			
-		} catch(Exception e) {}
-		
-		for (User userIndex : listUser) {
-			if (userIndex.getEmail().equalsIgnoreCase(email)) {
-				return true;
-			}
+			competitionList = requestFootApi();
+		} catch (IOException e) {
+			log.info("Error request data from competitionBean");
+			throw new IOException();
 		}
 		
-		return false;
-	}
-	
-	public User loginUser(User userData) {
-		User user = userRepository.findByEmail(userData.getEmail());
-		
-		if (user != null && user.getPassword().equalsIgnoreCase(userData.getPassword())) {
-			return user;
+		for (Competition competition : competitionList.getResponse()) {
+			if (competition.getCompetition().equalsIgnoreCase(competitionName)) {
+				List<String> listHighlightEmbed = new ArrayList<String>();
+				
+				for (Videos video : competition.getVideos()) {
+					if (video.getTitle().equalsIgnoreCase("Highlights")) {						
+						listHighlightEmbed.add(video.getEmbed());
+					}
+				}
+				
+				if (highlightIndex > listHighlightEmbed.size()) {
+					log.info("This highlight index is greater than the amount of highlights");
+					throw new IOException();
+				}
+				
+				HighlightExtend highlightExtend = HighlightExtend.builder()
+						.competition(competition.getCompetition())
+						.highlight_title(competition.getTitle())
+						.thumbnail_url(competition.getThumbnail())
+						.highlight_embed(listHighlightEmbed.get(highlightIndex - 1))
+						.build();
+				
+				return highlightExtend;
+			}
 		}
 		
 		return null;
